@@ -59,12 +59,10 @@
                             <field name="qty_in_progress"/>
                             <field name="qty_done"/>
                             <field name="expected_date" invisible="1"/>
-                            <field name="picking_policy"
-                                   invisible="1"/>
+                            <field name="picking_policy" invisible="1"/>
                             <field name="warehouse_id" invisible="1"/>
                             <field name="location_id" invisible="1"/>
-                            <field name="procurement_group_id"
-                                   invisible="1"/>
+                            <field name="procurement_group_id" invisible="1"/>
                             <field name="company_id" invisible="1"/>
                             <field name="state"/>
                         </tree>
@@ -90,5 +88,11 @@
               action="stock.quantsact"
               parent="helpdesk.helpdesk_ticket_report_menu_main"
               sequence="50"/>
+
+    <menuitem id="menu_helpdesk_stock_request"
+              name="Stock Requests"
+              action="stock_request.action_stock_request_form"
+              parent="menu_helpdesk_data"
+              sequence="90"/>
 
 </odoo>
