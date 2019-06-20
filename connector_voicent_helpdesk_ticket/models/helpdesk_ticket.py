@@ -6,6 +6,7 @@ import io
 import base64
 from odoo import api, models, _
 from ...queue_job.job import job
+from ..exception import RetryableJobError
 from odoo.tools import pycompat
 from ...connector_voicent.examples import voicent
 import tempfile
@@ -25,12 +26,14 @@ class HelpdeskTicket(models.Model):
                 str(call_line.backend_id.port),
                 call_line.backend_id.callerid,
                 str(call_line.backend_id.line))
-            status = voicent_obj.checkStatus(voicent_campaign)
+            res = voicent_obj.checkStatus(voicent_campaign)
             message = _("""Status of campaign <b>%s</b> on <b>%s</b>:
              %s""" % (voicent_campaign,
                       call_line.backend_id.name,
-                      status))
+                      res))
             helpdesk_ticket.message_post(body=message)
+            if res('status') is not 'FINISHED':
+                raise RetryableJobError(res)
 
     @job
     @api.multi
