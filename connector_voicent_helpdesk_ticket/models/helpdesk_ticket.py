@@ -3,13 +3,13 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import io
+import shutil
+import tempfile
 from odoo import api, fields, models, _
 from ...queue_job.job import job
 from ...queue_job.exception import RetryableJobError
 from odoo.tools import pycompat
 from ...connector_voicent.examples import voicent
-import tempfile
-import shutil
 
 
 class HelpdeskTicket(models.Model):
@@ -32,19 +32,13 @@ class HelpdeskTicket(models.Model):
                       res.get('status')))
             helpdesk_ticket.message_post(body=message)
             if res.get('status') == 'FINISHED':
-                import pdb;pdb.set_trace()
                 for reply in call_line.reply_ids:
                     if reply.reply_field == 'notes':
-                        directory = tempfile.mkdtemp(suffix='-helpdesk.ticket')
-                        filename = \
-                            directory + "/" + rec.name + '-' + \
-                            rec.stage_id.name + '-' + \
-                            fields.Datetime.now().strftime(
-                                '%Y-%m-%d-%H-%M-%S') + '.csv'
-                        res2 = voicent_obj.exportResult(campaign,
-                                                        filename,
-                                                        'Notes')
-                        field = res2.get('Notes')
+                        filename = rec.name + '-' + rec.stage_id.name + '-' + \
+                                   fields.Datetime.now().strftime(
+                                       '%Y-%m-%d-%H-%M-%S') + '.csv'
+                        res2 = voicent_obj.exportResult(campaign, filename)
+                        field = res2['Notes']
                     else:
                         field = res.get(reply.reply_field)
                     if reply.reply_value in field:
