@@ -27,9 +27,9 @@ class HelpdeskTicket(models.Model):
                 str(call_line.backend_id.line))
             res = voicent_obj.checkStatus(campaign)
             message = _("""Status of campaign <b>%s</b> on <b>%s</b>:
-             %s""" % (campaign,
-                      call_line.backend_id.name,
-                      res.get('status')))
+             <b>%s</b>""" % (campaign,
+                             call_line.backend_id.name,
+                             res.get('status')))
             helpdesk_ticket.message_post(body=message)
             if res.get('status') == 'FINISHED':
                 for reply in call_line.reply_ids:
@@ -100,17 +100,17 @@ class HelpdeskTicket(models.Model):
                 shutil.rmtree(directory)
                 if res.get('camp_id'):
                     message = _("""Call has been sent to <b>%s</b>.
-                    The campaign ID is <b>%s</b> and the status is: %s""" %
-                                (call_line.backend_id.name,
-                                 res.get('camp_id'),
-                                 res.get('status')))
+                    The campaign ID is <b>%s</b> and the status is: 
+                    <b>%s</b>""" % (call_line.backend_id.name,
+                                    res.get('camp_id'),
+                                    res.get('status')))
                     rec.with_delay().check_status_job(
                         res.get('camp_id'),
                         helpdesk_ticket,
                         call_line)
                 else:
                     message = _("""Call has been sent to <b>%s</b> but failed
-                     with the following message: %s""" %
+                     with the following message: <b>%s</b>""" %
                                 (call_line.backend_id.name,
                                  res))
             else:
