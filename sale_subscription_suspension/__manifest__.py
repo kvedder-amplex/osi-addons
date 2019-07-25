@@ -14,6 +14,7 @@
     'depends': ['sale_subscription'],
     'data': [
         'data/sale_subscription_suspension.xml',
+        'views/sale_subscription_suspend_button.xml'
             ],
     'installable': True,
 }
