@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <record id="sale_subscription_stage_suspended" model="sale.subscription.stage">
+        <field name="name">Suspended</field>
+        <field name="sequence">35</field>
+    </record>
+</odoo>

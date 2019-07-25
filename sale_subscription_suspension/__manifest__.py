@@ -13,7 +13,7 @@
     'website': 'http://www.opensourceintegrators.com',
     'depends': ['sale_subscription'],
     'data': [
-        'views/payment_views.xml',
+        'data/sale_subscription_suspension.xml',
             ],
     'installable': True,
 }
