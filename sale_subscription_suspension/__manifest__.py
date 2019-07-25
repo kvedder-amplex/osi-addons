@@ -2,16 +2,18 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'OSI Vendor Reference',
+    'name': 'sale_subscription_suspension',
     'version': '12.0.1.0.0',
     'author': 'Open Source Integrators',
-    'summary': '''When vendor bill is created, copy the vendor reference info
-    from the PO into the bill. If the bill already has a reference, append
-    to existing reference using ; [Bill can be for multiple PO's]''',
+    'summary': '''Adds the ability to suspend subscriptions, and re-activate subscriptions.
+                  During the period of suspension, new invoices will not be created.''',
     'license': 'LGPL-3',
-    'category': 'Customers',
+    'category': 'subscription',
     'maintainer': 'Open Source Integrators',
     'website': 'http://www.opensourceintegrators.com',
-    'depends': ['purchase'],
+    'depends': ['sale_subscription'],
+    'data': [
+        'views/payment_views.xml',
+            ],
     'installable': True,
 }
