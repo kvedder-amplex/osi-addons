@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Modify Sales Subscription Form View -->
-    <record id="sale_subscription_suspend_button" model="ir.ui.view">
-        <field name="name">sale.subscription.form.view</field>
+    <record id="sale_subscription_view_form" model="ir.ui.view">
+        <field name="name">Sale Subscription Suspend Button</field>
         <field name="model">sale.subscription</field>
-        <field name="inherit_id" ref="sale.subscription.sale_subscription_view_form"/>
+        <field name="inherit_id" ref="sale_subscription.sale_subscription_view_form"/>
         <field name="arch" type="xml">
             <button string="Upsell" position="after">
                 <button string="Suspend" help="Suspend the Subscription" name="%(sale_subscription.wizard_action)d" type="action" attrs="{'invisible': [('in_progress', '=', False)]}" modifiers="{'invisible':[['in_progress','=',false]]}"/>
