@@ -10,8 +10,8 @@ class SaleSubscription(models.Model):
     brand_id = fields.Many2one('res.partner', string='Brand',
                                domain="[('type', '=', 'brand')]")
 
-    def _prepare_invoice_data(self):
-        res = super()._prepare_invoice_data()
+    def _prepare_invoice(self):
+        res = super()._prepare_invoice()
         if self.brand_id:
             res.update({'brand_id': self.brand_id.id})
         return res
