@@ -16,6 +16,7 @@
     ],
     "data": [
         "views/sale_order_view.xml",
+        "views/renderer_line_view.xml"
     ],
     "installable": True,
 }
