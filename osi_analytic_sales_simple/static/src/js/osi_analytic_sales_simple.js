@@ -9,10 +9,10 @@ var time = require('web.time');
 var session = require('web.session');
 var qweb = core.qweb;
 var _t = core._t;
-var LineRenderer = require('account.LineRenderer');
+var ReconciliationRenderer = require('account.ReconciliationRenderer');
 
 //ADD FIELDS
-LineRenderer.include({
+ReconciliationRenderer.LineRenderer.include({
     _renderCreate: function (state) {
         var self = this;
         self._renderCreate(state);
