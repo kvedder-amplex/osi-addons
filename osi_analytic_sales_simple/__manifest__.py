@@ -11,6 +11,7 @@
     "website": "http://www.opensourceintegrators.com",
     "category": "Analytic Accounting",
     "depends": [
+        "account",
         "account_analytic_default",
         "sale"
     ],
