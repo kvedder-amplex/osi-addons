@@ -11,9 +11,11 @@ var qweb = core.qweb;
 var _t = core._t;
 var ReconciliationRenderer = require('account.ReconciliationRenderer');
 
+console.log("file has been called")
 //ADD FIELDS
-ReconciliationRenderer.LineRenderer.include({
+ReconciliationRenderer.LineRenderer.extend({
     _renderCreate: function (state) {
+        console.log("custom renderer method has been called")
         var self = this;
         self._renderCreate(state);
         this.model.makeRecord('account.bank.statement.line', [{
@@ -35,11 +37,9 @@ ReconciliationRenderer.LineRenderer.include({
 
                 function addRequiredStyle(widget) {
                 widget.$el.addClass('o_required_modifier');
-
-
-
             }
         });
+        console.log("function ends");
     }
     })
 })
