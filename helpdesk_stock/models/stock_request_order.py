@@ -35,14 +35,14 @@ class StockRequestOrder(models.Model):
         if self.helpdesk_ticket_id:
             ticket = self.env['helpdesk.ticket'].browse(
                 self.helpdesk_ticket_id.id)
-            return {'name': ticket.name,
+            return {'name': ('#' + str(ticket.id)),
                     'helpdesk_ticket_id': ticket.id,
                     'move_type': 'direct'}
         else:
             return {}
 
     @api.multi
-    def _action_confirm(self):
+    def action_confirm(self):
         if self.helpdesk_ticket_id:
             ticket = self.env['helpdesk.ticket'].browse(
                 self.helpdesk_ticket_id.id)
@@ -53,4 +53,4 @@ class StockRequestOrder(models.Model):
                 group = self.env['procurement.group'].create(values)
             self.procurement_group_id = group.id
             self.change_childs()
-        return super()._action_confirm()
+        return super().action_confirm()
