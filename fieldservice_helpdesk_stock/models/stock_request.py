@@ -31,8 +31,10 @@ class StockRequest(models.Model):
             order = self.env['fsm.order'].browse(vals['fsm_order_id'])
             if order.ticket_id:
                 vals.update({
-                    'helpdesk_ticket_id': order.ticket_id.id or False,
-                    'fsm_location_id': order.location_id.id or False})
+                    'helpdesk_ticket_id': order.ticket_id.id or False})
+            vals.update({
+                'fsm_location_id': order.location_id.id or False
+            })
         elif vals.get('helpdesk_ticket_id', False):
             ticket = self.env['helpdesk.ticket'].browse(vals['helpdesk_ticket_id'])
             vals.update({

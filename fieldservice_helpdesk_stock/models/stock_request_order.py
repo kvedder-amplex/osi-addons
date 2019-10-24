@@ -61,7 +61,8 @@ class StockRequestOrder(models.Model):
     def write(self, vals):
         if 'fsm_order_id' in vals and vals['fsm_order_id']:
             order = self.env['fsm.order'].browse(vals['fsm_order_id'])
-            vals.update({'helpdesk_ticket_id': order.ticket_id.id or False})
+            vals.update({'helpdesk_ticket_id': order.ticket_id.id or False,
+                         'fsm_location_id': ticket.fsm_location_id.id or False})
         return super().write(vals)
 
     def _prepare_procurement_group_values(self):
