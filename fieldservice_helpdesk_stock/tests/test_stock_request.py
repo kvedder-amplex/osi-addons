@@ -20,8 +20,7 @@ class TestStockRequest(common.TransactionCase):
         self.product_id = self.env['product.product'].create(
             dict(name='CODEA1', default_code='Product A1',
                  uom_id=self.env.ref('uom.product_uom_unit').id,
-                 company_id=self.main_company.id, type='product'
-            ))
+                 company_id=self.main_company.id, type='product'))
 
         self.order = self.env['fsm.order'].create(
             {'location_id': self.test_location.id})
