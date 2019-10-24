@@ -17,17 +17,15 @@ class TestStockRequest(common.TransactionCase):
         self.main_company = self.env.ref('base.main_company')
         self.warehouse = self.env.ref('stock.warehouse0')
 
-        self.product_id = self.env['product.product'].create(dict(
-                name='CODEA1',
-                default_code='Product A1',
-                uom_id=self.env.ref('uom.product_uom_unit').id,
-                company_id=self.main_company.id,
-                type='product'
+        self.product_id = self.env['product.product'].create(
+            dict(name='CODEA1', default_code='Product A1',
+                 uom_id=self.env.ref('uom.product_uom_unit').id,
+                 company_id=self.main_company.id, type='product'
             ))
 
-        self.order = self.env['fsm.order'].create({
-            'location_id': self.test_location.id,
-        })
+        self.order = self.env['fsm.order'].create(
+            {'location_id': self.test_location.id})
+
         self.stock_request = self.env['stock.request'].create({
             'picking_policy': 'direct',
             'product_id': self.product_id.id,
