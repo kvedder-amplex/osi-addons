@@ -20,8 +20,8 @@ class StockRequestOrder(models.Model):
         elif vals.get('helpdesk_ticket_id', False):
             ticket = self.env['helpdesk.ticket'].\
                 browse(vals['helpdesk_ticket_id'])
-            vals.update({
-                    'fsm_location_id': ticket.fsm_location_id.id or False})
+            vals.update({'fsm_location_id': 
+                         ticket.fsm_location_id.id or False})
         return super().create(vals)
 
     @api.onchange('direction', 'fsm_order_id', 'helpdesk_ticket_id')
